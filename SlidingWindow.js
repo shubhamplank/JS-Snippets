@@ -27,7 +27,7 @@ console.log(
 
 // find smallest subarray length with sum = K
 function smallest_subarray_with_given_sum(K, arr) {
-  let windowSum = 0.0,``
+  let windowSum = 0.0,
     windowStart = 0,
     minLength = Infinity;
 
@@ -64,3 +64,5 @@ console.log(
     [3, 4, 1, 1, 6]
   )}`
 );
+
+   
