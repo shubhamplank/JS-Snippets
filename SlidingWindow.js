@@ -1,5 +1,4 @@
-
-// Maximum value of a Substring of length = K 
+// Maximum value of a Substring of length = K
 function find_max_of_subarrays(K, arr) {
   let result = [];
   let windowSum = 0.0,
@@ -19,12 +18,16 @@ function find_max_of_subarrays(K, arr) {
 }
 debugger;
 
-console.log(`Averages of subarrays of size K: ${find_max_of_subarrays(5, [1, 3, 2, 6, -1, 4, 1, 8, 2])}`);
-
+console.log(
+  `Averages of subarrays of size K: ${find_max_of_subarrays(
+    5,
+    [1, 3, 2, 6, -1, 4, 1, 8, 2]
+  )}`
+);
 
 // find smallest subarray length with sum = K
 function smallest_subarray_with_given_sum(K, arr) {
-  let windowSum = 0.0,
+  let windowSum = 0.0,``
     windowStart = 0,
     minLength = Infinity;
 
@@ -43,6 +46,21 @@ function smallest_subarray_with_given_sum(K, arr) {
 
   return minLength;
 }
-console.log(`Smallest subarray length: ${smallest_subarray_with_given_sum(7, [2, 1, 5, 2, 3, 2])}`);
-console.log(`Smallest subarray length: ${smallest_subarray_with_given_sum(7, [2, 1, 5, 2, 8])}`);
-console.log(`Smallest subarray length: ${smallest_subarray_with_given_sum(8, [3, 4, 1, 1, 6])}`);
+console.log(
+  `Smallest subarray length: ${smallest_subarray_with_given_sum(
+    7,
+    [2, 1, 5, 2, 3, 2]
+  )}`
+);
+console.log(
+  `Smallest subarray length: ${smallest_subarray_with_given_sum(
+    7,
+    [2, 1, 5, 2, 8]
+  )}`
+);
+console.log(
+  `Smallest subarray length: ${smallest_subarray_with_given_sum(
+    8,
+    [3, 4, 1, 1, 6]
+  )}`
+);
