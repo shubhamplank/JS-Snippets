@@ -29,3 +29,10 @@ const currify = (fn) => {
 const add = (x, y, z) => x + y + z;
 console.log(currify(add)(3)(9)(3));
 //-------------------------------------------------
+
+const debounce = function (fn, delay) {
+  let timeout;
+  return function () {
+    setTimeout(() => fn, delay);
+  };
+};
