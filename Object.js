@@ -6,5 +6,12 @@ const omit = (obj, arr) => Object.keys(obj).filter(key => !(arr.includes(key))).
 
 const omitBy = (obj, fn) => Object.keys(obj).reduce((acc, key) => (!fn(obj[key]) ? acc[key] = obj[key] : null, acc), {})
 
-let demo = omitBy({ a: 1, b: '2', c: 3 }, x => typeof x === 'number')
+const hasKey = (obj, keys) => keys.reduce((acc, key) => (acc = key in acc ? acc[key] : {}), obj)
+let obj = {
+    a: 1,
+    b: { c: [{ y: 1 }] },
+    'b.d': 5
+};
+
+let demo = hasKey(obj, ['b', 'c', 'y']);
 console.log(demo)
