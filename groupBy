@@ -1,0 +1,146 @@
+// output
+const out = [
+  {
+    count: 2,
+    city: "chd",
+    employees: [
+      {
+        name: "new",
+        age: 20,
+        city: "chd",
+      },
+      {
+        name: "old",
+        age: 34,
+        city: "chd",
+      },
+    ],
+  },
+  {
+    count: 2,
+    city: "pune",
+    employees: [
+      {
+        name: "new2",
+        age: 22,
+        city: "pune",
+      },
+      {
+        name: "old2",
+        age: 20,
+        city: "pune",
+      },
+    ],
+  },
+  {
+    count: 1,
+    city: "hyd",
+    employees: [
+      {
+        name: "test",
+        age: 20,
+        city: "hyd",
+      },
+    ],
+  },
+];
+
+const unique = (arr) => {
+  let hash = {};
+  for (let i of arr) {
+    if (!hash[i]) hash[i] = i;
+  }
+  return Object.keys(hash);
+};
+
+const groupByImperative = (arr) => {
+  let cities = arr.map((x) => x.city);
+  let uniqueCity = unique(cities);
+  return uniqueCity.reduce((acc, k) => {
+    let obj = {},
+      count = 0,
+      employees = [];
+    arr.forEach((employe) => {
+      if (employe.city === k) {
+        employees.push(employe);
+        obj = {
+          count: ++count,
+          city: k,
+          employees: [...employees],
+        };
+      }
+    });
+    return [...acc, obj];
+  }, []);
+};
+
+const groupByDeclarative = (arr) => {
+  let cities = arr.map((x) => x.city);
+
+  let uniqueCity = unique(cities);
+  return uniqueCity.reduce((acc, k) => {
+    let cityEmploye = arr.filter((emp) => emp.city === k);
+    let obj = {
+      count: cityEmploye.length,
+      city: k,
+      employees: cityEmploye.map((x) => x),
+    };
+    return [...acc, obj];
+  }, []);
+};
+
+const groupByFn = (arr, fn) =>
+  arr.map(fn).reduce((acc, key, i) => {
+    acc[key] = (acc[key] || []).concat(arr[i]);
+    return acc;
+  }, {});
+// countBy output = { hyd: 2 , pune: 2, chandigard: 1}
+
+const countByFn = (arr, fn) =>
+  arr.map(fn).reduce((acc, key, i) => {
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+
+const employee = [
+  {
+    name: "new",
+    age: 20,
+    city: "chd",
+  },
+  {
+    name: "old",
+    age: 34,
+    city: "chd",
+  },
+  {
+    name: "new2",
+    age: 22,
+    city: "pune",
+  },
+  {
+    name: "old2",
+    age: 20,
+    city: "pune",
+  },
+  {
+    name: "test",
+    age: 20,
+    city: "hyd",
+  },
+];
+
+const _groupBy = (arr, fn) =>
+  arr.map(fn).reduce((acc, key, i) => {
+    
+
+    acc[key] = {
+      count: (acc[key] && acc[key].count || 0) + 1,
+      city: key,
+      employees: (acc[key] && acc[key].employees || []).concat(arr[i]),
+    };
+
+    return acc;
+  }, {});
+
+_groupBy(employee, (x) => x.city);
