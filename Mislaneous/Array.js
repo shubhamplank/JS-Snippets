@@ -36,8 +36,9 @@ const flatten = value => {
     }else{
       result.push(item)
     }
-    return result;
   }
+  return result;
+}
 
   const flatten_in_place = value => {
     for(let i =0; i < value.length;){
