@@ -28,11 +28,26 @@ const currify = (fn) => {
 
 const add = (x, y, z) => x + y + z;
 console.log(currify(add)(3)(9)(3));
-//-------------------------------------------------
 
+
+
+//-------------------------------------------------
 const debounce = function (fn, delay) {
-  let timeout;
-  return function () {
-    setTimeout(() => fn, delay);
+  let id = null;
+  return function (...args) {
+    clearTimeout(id)
+    id = setTimeout(() => fn.apply(this, args), delay);
   };
 };
+
+const throttle = function (fn, delay) {
+  let lock = false;
+  return function(...args){
+    if(!lock){
+      lock = true;
+      fn.apply(this, args);
+      setTimeout(() => lock = false, delay)
+    }
+  }
+}
+
