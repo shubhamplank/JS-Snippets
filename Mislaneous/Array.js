@@ -24,7 +24,31 @@ Array.prototype._reduce = function (fn, initial) {
   }
   return result;
 };
+//------------------------------------------------------------------------------------
+const flatten = value => {
+  const result = [];
+  const copy = value.slice();
 
+  while(copy.length){
+    let item = copy.shift();
+    if(Array.isArray(item)){
+      copy.unshift(...item);
+    }else{
+      result.push(item)
+    }
+    return result;
+  }
+
+  const flatten_in_place = value => {
+    for(let i =0; i < value.length;){
+      if(Array.isArray(value[i]){
+        value[i]=value.splice(i, 1, ...value[i])
+      }else { 
+        i++'
+      }
+    }
+  }
+//------------------------------------------------------------------------------------
 Array.prototype._every = function (fn) {
   for (let i = 0; i < this.length; i++) {
     if (!fn(this[i])) return false;
