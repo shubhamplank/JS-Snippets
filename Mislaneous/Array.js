@@ -44,7 +44,7 @@ const flatten = value => {
       if(Array.isArray(value[i]){
         value[i]=value.splice(i, 1, ...value[i])
       }else { 
-        i++'
+        i++;
       }
     }
   }
