@@ -1,0 +1,14 @@
+.nav {
+    display: flex;
+    width: 400px;
+}
+
+.tab {
+    border: 1px solid black;
+    padding: 2px;
+    margin: 10px auto;
+}
+
+.body {
+    display: flex;
+}
