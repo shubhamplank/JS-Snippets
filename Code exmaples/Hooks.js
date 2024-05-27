@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react'
 
+// Custom Hooks : useFetch, useDebounce, useHover, useFocus, useWindowSize
 
-export function useToggle(on) { 
-  const [toggle, setToggle ] = useState(on);
-  const handleToggle = ()=> setToggle(prevState => !prevState);
+export function useToggle(on) {
+  const [toggle, setToggle] = useState(on)
+  const handleToggle = () => setToggle((prevState) => !prevState)
 
-  return [toggle, handleToggle];
+  return [toggle, handleToggle]
 }
 
-//Debounce a value 
+//Debounce a value
 
 export function useDebounce(value, delay) {
   const [debounced, setDebounced] = useState(value)
@@ -16,7 +17,7 @@ export function useDebounce(value, delay) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebounced(value)
-    }, delay);
+    }, delay)
 
     return () => {
       clearTimeout(timer)
@@ -24,29 +25,27 @@ export function useDebounce(value, delay) {
   }, [value, delay])
 
   return debounced
-
 }
-
 
 // Debounce a function
 export function useDebounce(func, delay) {
-  const debouncedFunction = React.useRef(null);
+  const debouncedFunction = React.useRef(null)
 
   return useCallback(
     (...args) => {
-      clearTimeout(debouncedFunction.current);
+      clearTimeout(debouncedFunction.current)
       debouncedFunction.current = setTimeout(() => {
-        func(...args);
-      }, delay);
+        func(...args)
+      }, delay)
     },
     [func, delay]
-  );
+  )
 }
 
 export function App() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
-  const increment = useDebounce(() => setValue(state => state + 1), 2000);
+  const increment = useDebounce(() => setValue((state) => state + 1), 2000)
 
   return (
     <>
@@ -55,5 +54,5 @@ export function App() {
         <h2>value: {value}</h2>
       </div>
     </>
-  );
+  )
 }
