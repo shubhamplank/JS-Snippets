@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef } from 'react'
 import ChildComponent from './ChildComponent'
 
+// useCallback examples
 function ParentComponent() {
   const [count, setCount] = useState(0)
 
@@ -34,6 +35,7 @@ function ButtonClickCounter() {
   )
 }
 
+// Ref examples
 function TextInputWithFocusButton() {
   const inputRef = useRef(null)
 
