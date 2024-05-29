@@ -84,7 +84,62 @@ Function.prototype.myApply = function (thisArg, argArray = []) {
   return this.call(thisArg, ...argArray);
 };
 
+// implment this (mpokket interview): 
+obj.initializeVal(10).add(5).subtract(3).result()
+obj.initializeVal(10).subtract(5).add(3).result()
 
+// Solution 1: OOPs way
+class Calculator {
+  constructor() {
+      this.value = 0;
+  }
+
+  initializeVal(val) {
+      this.value = val;
+      return this;
+  }
+
+  add(amount) {
+      this.value += amount;
+      return this;
+  }
+
+  subtract(amount) {
+      this.value -= amount;
+      return this;
+  }
+
+  result() {
+      return this.value;
+  }
+}
+
+// Usage example:
+const obj = new Calculator();
+console.log(obj.initializeVal(10).add(5).subtract(3).result());  // Output: 12
+console.log(obj.initializeVal(10).subtract(5).add(3).result());  // Output: 8
+
+// Solution 2:  Calculator Factory Function
+function createCalculator(initialValue = 0) {
+    return {
+        value: initialValue,
+        initializeVal: function(val) {
+            return createCalculator(val);
+        },
+        add: function(amount) {
+            return createCalculator(this.value + amount);
+        },
+        subtract: function(amount) {
+            return createCalculator(this.value - amount);
+        },
+        result: function() {
+            return this.value;
+        }
+    };
+}
+
+// Initialize the Calculator
+const obj2 = createCalculator();
 
 
 
